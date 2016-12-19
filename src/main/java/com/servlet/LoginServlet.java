@@ -34,6 +34,7 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		op = getAction(req);
+		System.out.println("sss"+op);
 		switch (op) {
 		case "login_jsp.do":
 			handlerLogin_jsp(req, resp);
@@ -105,7 +106,7 @@ public class LoginServlet extends HttpServlet {
 	private String getAction(HttpServletRequest req) {
 		String uri = req.getRequestURI();
 		String substring = uri.substring(uri.lastIndexOf("/") + 1);
-		if ("login".equals(substring) || "".equals(substring)) {
+		if ("login.jsp".equals(substring) || "".equals(substring)) {
 			substring = "login.do";
 		}
 		return substring;

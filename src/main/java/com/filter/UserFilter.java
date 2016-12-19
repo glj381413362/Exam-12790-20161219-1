@@ -13,9 +13,9 @@ import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-/*@WebFilter("/index.jsp")*/
-/*@WebFilter(urlPatterns = { "/*" }, filterName = "UserFilter", initParams = {
-		@WebInitParam(name = "excludedPages", value = "/login/login.do,/login/login_jsp.do,/WEB-INF/jsp/login.jsp") })*/
+/*@WebFilter("/WEB-INF/jsp/*.jsp")
+*/@WebFilter(urlPatterns = { "/*" }, filterName = "UserFilter", initParams = {
+		@WebInitParam(name = "excludedPages", value = "/login.do,/login_jsp.do,/login.jsp") })
 public class UserFilter implements Filter {
 
 	/**
@@ -35,9 +35,11 @@ public class UserFilter implements Filter {
 			throws IOException, ServletException {
 
 		boolean isExcludedPage = false;
+		String path = ((HttpServletRequest) req).getServletPath();
+		System.out.println("当前"+path);
 		for (String page : excludedPageArray) {// 判断是否在过滤url之外
-			String path = ((HttpServletRequest) req).getServletPath();
-			if (path.equals(page) || path.equals("")) {
+			System.out.println("当前库"+page);
+			if (path.equals(page) || path.equals(" ")) {
 				isExcludedPage = true;
 				break;
 			}
@@ -47,19 +49,12 @@ public class UserFilter implements Filter {
 		} else {// 不在过滤url之外，判断session是否存在
 			HttpSession session = ((HttpServletRequest) req).getSession();
 			if (session == null || session.getAttribute("user") == null) {
-				req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
+				System.out.println("判断session是否存");
+				req.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(req, resp);
 			} else {
 				chain.doFilter(req, resp);
 			}
 		}
-		/*
-		 * String userString = req.getParameter("user"); try { if (userString ==
-		 * null) {
-		 * req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req,
-		 * resp); } else { req.getRequestDispatcher("/index.jsp").forward(req,
-		 * resp); } } catch (ServletException | IOException e) {
-		 * e.printStackTrace(); } chain.doFilter(req, resp);
-		 */
 	}
 
 	/**

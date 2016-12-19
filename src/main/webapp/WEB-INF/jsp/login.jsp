@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
             </div>
             <div class="col-sm-5">
-                <form method="post" action="login.do">
+                <form method="post" action="login/login.do">
                     <h4 class="no-margins">登录：</h4>
                     <p class="m-t-md"><h3>登录服务</h3></p>
                    	<c:if test="${not empty errorMsg }">
