@@ -121,7 +121,7 @@ public class FilmDao implements IFilmDao {
 		try {
 			while (rs.next()) {
 				int totalRecords = rs.getInt("FILM_ID");// 总记录数totalRecords
-				totalPages = totalRecords % 10 == 0 ? totalRecords / pageSize : totalRecords / pageSize + 1;
+				totalPages = totalRecords % pageSize == 0 ? totalRecords / pageSize : totalRecords / pageSize + 1;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

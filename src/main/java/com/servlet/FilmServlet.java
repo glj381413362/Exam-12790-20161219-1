@@ -57,6 +57,12 @@ public class FilmServlet extends HttpServlet {
 			break;
 		case "changePage.do":
 			int pages = Integer.parseInt(req.getParameter("nowPage").trim());
+			if (pages < 0) {
+				pages = 1;
+			} else if (pages > filmDao.getPages()) {
+				pages = filmDao.getPages();
+			}
+			req.getSession().setAttribute("nowPage", pages);
 			handlerChangePage(req, resp, pages);
 			break;
 
@@ -107,7 +113,6 @@ public class FilmServlet extends HttpServlet {
 			req.getSession().setAttribute("fList", fList);
 			req.getRequestDispatcher("/index.jsp").forward(req, resp);
 		} catch (ServletException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -126,7 +131,6 @@ public class FilmServlet extends HttpServlet {
 			req.getSession().setAttribute("fList", fList);
 			req.getRequestDispatcher("/index.jsp").forward(req, resp);
 		} catch (ServletException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

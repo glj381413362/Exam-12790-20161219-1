@@ -78,13 +78,13 @@
 							<div class="col-md-4 column"></div>
 							<div class="col-md-4 column">
 								<ul class="pagination">
-									<li><a href="<%=path%>/film/changePage.do?nowPage=1"">Prev</a></li>
-									<li><a href="<%=path%>/film/changePage.do?nowPage=1">${naowPage}</a></li>
-									<li><a href="<%=path%>/film/changePage.do?nowPage=2">2</a></li>
-									<li><a href="<%=path%>/film/changePage.do?nowPage=3">3</a></li>
-									<li><a href="<%=path%>/film/changePage.do?nowPage=4">4</a></li>
-									<li><a href="<%=path%>/film/changePage.do?nowPage=5">5</a></li>
-									<li><a href="<%=path%>/film/changePage.do?nowPage=12"">Next</a></li>
+									<li><a href="<%=path%>/film/changePage.do?nowPage=${(naowPage)-1}">Prev</a></li>
+									<li><a href="<%=path%>/film/changePage.do?nowPage=${(naowPage)+1}">${(naowPage)+1}</a></li>
+									<li><a href="<%=path%>/film/changePage.do?nowPage=${(naowPage)+2}">${(naowPage)+2}</a></li>
+									<li><a href="<%=path%>/film/changePage.do?nowPage=${(naowPage)+3}">${(naowPage)+3}</a></li>
+									<li><a href="<%=path%>/film/changePage.do?nowPage=${(naowPage)+4}">${(naowPage)+4}</a></li>
+									<li><a href="<%=path%>/film/changePage.do?nowPage=${(naowPage)+5}">${(naowPage)+5}</a></li>
+									<li><a href="<%=path%>/film/changePage.do?nowPage=${(naowPage)+6}">Next</a></li>
 								</ul>
 							</div>
 						</div>
