@@ -36,9 +36,7 @@ public class UserFilter implements Filter {
 
 		boolean isExcludedPage = false;
 		String path = ((HttpServletRequest) req).getServletPath();
-		System.out.println("当前"+path);
 		for (String page : excludedPageArray) {// 判断是否在过滤url之外
-			System.out.println("当前库"+page);
 			if (path.equals(page) || path.equals(" ")) {
 				isExcludedPage = true;
 				break;
