@@ -19,18 +19,6 @@
 <link href="<%=path%>/css/init.css" rel="stylesheet">
 </head>
 <body>
-	<script>
-		(function($) {
-			$('#myModal').modal('hide')
-		}(jQuery));
-	</script>
-	<script>
-		$(function() {
-			$('#myModal').on('hide.bs.modal', function() {
-				alert('嘿，我听说您喜欢模态框...');
-			})
-		});
-	</script>
 	<div class="container ">
 		<div class=" row clearfix">
 			<div class="col-md-4 column"></div>
@@ -91,7 +79,7 @@
 							<div class="col-md-4 column">
 								<ul class="pagination">
 									<li><a href="<%=path%>/film/changePage.do?nowPage=1"">Prev</a></li>
-									<li><a href="<%=path%>/film/changePage.do?nowPage=1">1</a></li>
+									<li><a href="<%=path%>/film/changePage.do?nowPage=1">${naowPage}</a></li>
 									<li><a href="<%=path%>/film/changePage.do?nowPage=2">2</a></li>
 									<li><a href="<%=path%>/film/changePage.do?nowPage=3">3</a></li>
 									<li><a href="<%=path%>/film/changePage.do?nowPage=4">4</a></li>

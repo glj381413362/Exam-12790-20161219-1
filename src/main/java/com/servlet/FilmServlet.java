@@ -21,6 +21,7 @@ public class FilmServlet extends HttpServlet {
 	private String op = null;
 	private IFilmDao filmDao = new FilmDao();
 	private ILanguageDao LanguageDao = new LanguageDao();
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		this.doPost(req, resp);
@@ -28,7 +29,7 @@ public class FilmServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		String n1 =req.getParameter("id");
+		// String n1 =req.getParameter("id");
 		List<Language> languages = LanguageDao.queryAll();
 		op = getAction(req);
 		switch (op) {
@@ -39,13 +40,12 @@ public class FilmServlet extends HttpServlet {
 		case "addSave.do":
 			String title1 = req.getParameter("title");
 			String description1 = req.getParameter("description");
-//			String language = req.getParameter("language");
 			Film film3 = new Film();
 			film3.setTitle(title1);
 			film3.setDescription(description1);
-			film3.setLanguage_id(1);      /////////////////////////////
+			film3.setLanguage_id(1); /////////////////////////////
 			filmDao.add(film3);
-			handlerDelete(req,resp,1);	
+			handlerDelete(req, resp, 1);
 			System.out.println("addSave.do");
 			break;
 		case "delete.do":
@@ -53,11 +53,11 @@ public class FilmServlet extends HttpServlet {
 			int film_id1 = Integer.parseInt(req.getParameter("film_id").trim());
 			System.out.println(film_id1);
 			filmDao.remove(film_id1);
-			handlerDelete(req,resp,page);
+			handlerDelete(req, resp, page);
 			break;
 		case "changePage.do":
 			int pages = Integer.parseInt(req.getParameter("nowPage").trim());
-			handlerChangePage(req,resp,pages);
+			handlerChangePage(req, resp, pages);
 			break;
 
 		case "update.do":
@@ -69,24 +69,23 @@ public class FilmServlet extends HttpServlet {
 			req.getSession().setAttribute("film", film);
 			req.getRequestDispatcher("/WEB-INF/jsp/update.jsp").forward(req, resp);
 			break;
-			
+
 		case "updateSave.do":
 			String n = req.getParameter("film_id");
 			int film_id2 = 0;
-			if(n!=null){
+			if (n != null) {
 				film_id2 = Integer.parseInt(n);
 			}
-			
+
 			String title = req.getParameter("title");
 			String description = req.getParameter("description");
-//			String language = req.getParameter("language");
 			Film film2 = new Film();
 			film2.setFilm_id(film_id2);
 			film2.setTitle(title);
 			film2.setDescription(description);
 			film2.setLanguage_id(1);/////////////////////////////
 			filmDao.update(film2);
-			handlerDelete(req,resp,1);	
+			handlerDelete(req, resp, 1);
 			System.out.println("updateSave.do");
 			break;
 		default:
@@ -94,6 +93,14 @@ public class FilmServlet extends HttpServlet {
 		}
 	}
 
+	/**
+	 * @discription 处理分页请求
+	 * @author 龚梁钧
+	 * @created 2016年12月19日 下午9:20:20
+	 * @param req
+	 * @param resp
+	 * @param pages
+	 */
 	private void handlerChangePage(HttpServletRequest req, HttpServletResponse resp, int pages) {
 		List<Film> fList = filmDao.queryByUsePage(pages);
 		try {
@@ -105,7 +112,15 @@ public class FilmServlet extends HttpServlet {
 		}
 	}
 
-	private void handlerDelete(HttpServletRequest req, HttpServletResponse resp,int page) {
+	/**
+	 * @discription 处理删除请求
+	 * @author 龚梁钧
+	 * @created 2016年12月19日 下午9:20:48
+	 * @param req
+	 * @param resp
+	 * @param page
+	 */
+	private void handlerDelete(HttpServletRequest req, HttpServletResponse resp, int page) {
 		List<Film> fList = filmDao.queryByUsePage(page);
 		try {
 			req.getSession().setAttribute("fList", fList);
@@ -116,6 +131,13 @@ public class FilmServlet extends HttpServlet {
 		}
 	}
 
+	/**
+	 * @discription 获得引擎类型
+	 * @author 龚梁钧
+	 * @created 2016年12月19日 下午9:21:14
+	 * @param req
+	 * @return
+	 */
 	private String getAction(HttpServletRequest req) {
 		String uri = req.getRequestURI();
 		String substring = uri.substring(uri.lastIndexOf("/") + 1);
