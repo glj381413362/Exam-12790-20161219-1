@@ -19,24 +19,38 @@
 <link href="<%=path%>/css/init.css" rel="stylesheet">
 </head>
 <body>
-<script>
-  (function ($) { 
-	   $('#myModal').modal('hide')
-	   }(jQuery));
-</script>
 	<script>
-   $(function () { $('#myModal').on('hide.bs.modal', function () {
-      alert('嘿，我听说您喜欢模态框...');
-      })
-   });
-</script>
+		(function($) {
+			$('#myModal').modal('hide')
+		}(jQuery));
+	</script>
+	<script>
+		$(function() {
+			$('#myModal').on('hide.bs.modal', function() {
+				alert('嘿，我听说您喜欢模态框...');
+			})
+		});
+	</script>
 	<div class="container ">
 		<div class=" row clearfix">
 			<div class="col-md-4 column"></div>
 			<div class="col-md-4 column"></div>
 			<div class="col-md-4 column">
-				<label class="class1">你好！</label> <a
-					href="<%=path%>/login/login_jsp.do">登录</a>
+				<c:choose>
+					<c:when test="${not empty user }">
+						<!--如果 -->
+						<p class="class1" class="m-t-md" style="color: red;">你好！${user.first_name }</p>
+					</c:when>
+					<c:otherwise>
+						<!--否则 -->
+						<p class="class1">登录</p>
+					</c:otherwise>
+				</c:choose>
+				<%-- <label class="class1">你好！</label> <a
+					href="<%=path%>/login/login_jsp.do"><c:if
+						test="${not empty user }">
+						<p class="m-t-md" style="color: red;">${user.first_name }</p>
+					</c:if></a> --%>
 			</div>
 		</div>
 		<div class="row clearfix">

@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <h4 class="no-margins">登录：</h4>
                     <p class="m-t-md"><h3>登录服务</h3></p>
                    	<c:if test="${not empty errorMsg }">
-                    	<p class="m-t-md" style="color:red;">dd${errorMsg }</p>
+                    	<p class="m-t-md" style="color:red;">${errorMsg }</p>
                     </c:if>
                     <input type="text" class="form-control uname" name="username" placeholder="用户名" />
                     <input type="password" class="form-control pword m-b" name="pwd" placeholder="密码" />
