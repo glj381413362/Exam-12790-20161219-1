@@ -1,9 +1,9 @@
-package com.dao.impl;
+package com.dao;
 
 import com.bean.Customer;
 import com.dao.basedao.BaseDaoInterface;
 
-public interface UserDaoImpl extends BaseDaoInterface<Customer> {
+public interface IUserDao extends BaseDaoInterface<Customer> {
 
 	public Customer getCustomerByName(String userName) ;
 }

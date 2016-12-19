@@ -16,18 +16,18 @@ public class EcodingFilter implements Filter {
 	private String  encode = null;
 	@Override
 	public void init(FilterConfig config) throws ServletException {
-		//»ñÈ¡³õÊ¼»¯²ÎÊı
+		//è·å–åˆå§‹åŒ–å‚æ•°
 	     String encode =config.getInitParameter("encode");
 	      if(this.encode == null){
-	           this.encode =encode;  //²éÕÒÅäÖÃÎÄ¼şÖĞÔ¤ÉèµÄ×Ö·û¼¯±àÂë
+	           this.encode =encode;  //æŸ¥æ‰¾é…ç½®æ–‡ä»¶ä¸­é¢„è®¾çš„å­—ç¬¦é›†ç¼–ç 
 	      }
-		System.out.println("ecodingFilter³õÊ¼»¯");
+		System.out.println("ecodingFilteråˆå§‹åŒ–");
 	}
 
 	@Override
 	public void doFilter(ServletRequest res, ServletResponse resp,
 			FilterChain chain) throws IOException, ServletException {
-		//Èç¹ûresÎ´ÉèÖÃ±àÂë£¬Ôò½øĞĞÉèÖÃ
+		//å¦‚æœresæœªè®¾ç½®ç¼–ç ï¼Œåˆ™è¿›è¡Œè®¾ç½®
 		if(null==res.getCharacterEncoding()){
 		    res.setCharacterEncoding(encode);
 			resp.setCharacterEncoding(encode);
@@ -39,7 +39,7 @@ public class EcodingFilter implements Filter {
 	@Override
 	public void destroy() {
 		 encode = null;
-		System.out.println("ecodingFilterÏú»Ù£¡");
+		System.out.println("ecodingFilteré”€æ¯!");
 	}
 
 }

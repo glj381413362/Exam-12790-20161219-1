@@ -1,6 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,12 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bean.Customer;
-import com.dao.UserDao;
-import com.dao.impl.UserDaoImpl;
+import com.bean.Film;
+import com.dao.IFilmDao;
+import com.dao.IUserDao;
+import com.dao.impl.FilmDao;
+import com.dao.impl.UserDao;
 
 @WebServlet("/login/*")
 public class LoginServlet extends HttpServlet {
-	private UserDaoImpl userDao = new UserDao();
+	
+		/**  描述   (@author: 龚梁钧) */      
+	    
+	private static final long serialVersionUID = -3273399521617947867L;
+	private IUserDao userDao = new UserDao();
+	private IFilmDao filmDao = new FilmDao();
 	private String op = null;
 
 	@Override
@@ -48,11 +57,13 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(customer);
 		try {
 			if (customer != null) {
+				List<Film> fList = filmDao.queryByUsePage(1);
+				req.getSession().setAttribute("fList", fList);
 				req.getSession().setAttribute("user", customer);
 				req.getRequestDispatcher("/index.jsp").forward(req, resp);
 			} else {
 				req.setAttribute("errorMsg", "账户或密码错误！");
-				resp.sendRedirect("/login_jsp.do");
+				resp.sendRedirect("login_jsp.do");
 			}
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();

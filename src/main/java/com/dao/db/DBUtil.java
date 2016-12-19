@@ -91,6 +91,41 @@ public class DBUtil {
 		return count;
 
 	}
+	/*
+	 * public static void alterTableCascade(int n){ Connection conn =
+	 * DBUtil.getConnection(); PreparedStatement pstm = null; ResultSet rs =
+	 * null; String sql1 = "SET FOREIGN_KEY_CHECKS = "+n; try { pstm =
+	 * conn.prepareStatement(sql1); rs = pstm.executeQuery(); } catch
+	 * (SQLException e) { // TODO Auto-generated catch block
+	 * e.printStackTrace(); }finally{ closeAll(); } }
+	 */
+
+	/**
+	 * @discription 在此输入一句话描述作用
+	 * @author 龚梁钧
+	 * @created 2016年12月19日 下午2:43:50
+	 * @param sql1
+	 *            去掉外键关联
+	 * @param sql2
+	 * @param sql3添加外键关联
+	 * @return
+	 */
+	public static int executeUpdateTwo(String sql1, String sql2, String sql3) {
+		int count = 0;
+		Connection conn = DBUtil.getConnection();
+		try {
+			Statement statement = conn.createStatement();
+			statement.executeUpdate(sql1);
+			count = statement.executeUpdate(sql2);
+			statement.executeUpdate(sql3);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll();
+		}
+		return count;
+
+	}
 
 	/**
 	 * @discription 获取结果集

@@ -3,6 +3,7 @@ package com.bean;
 import java.util.Date;
 
 public class Language {
+
 	private int language_id;
 	private String name;
 	private Date last_update;
@@ -30,5 +31,8 @@ public class Language {
 	public void setLast_update(Date last_update) {
 		this.last_update = last_update;
 	}
-
+	@Override
+	public String toString() {
+		return this.name;
+	}
 }

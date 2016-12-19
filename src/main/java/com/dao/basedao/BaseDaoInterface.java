@@ -54,7 +54,7 @@ public interface BaseDaoInterface<T> {
 	     * @param id
 	     * @return     
 	     */
-	boolean remove(int id);
+	int remove(int id);
 
 	
 	  
@@ -65,7 +65,7 @@ public interface BaseDaoInterface<T> {
 	     * @param obj
 	     * @return     
 	     */
-	boolean add(T obj);
+	int add(T obj);
 
 	
 	  
@@ -76,10 +76,8 @@ public interface BaseDaoInterface<T> {
 	     * @param obj
 	     * @return     
 	     */
-	boolean update(T obj);
+	int update(T obj);
 
-	
-	  
 	    /**     
 	     * @discription 通过对象查询
 	     * @author 龚梁钧       
