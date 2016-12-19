@@ -39,18 +39,14 @@
 				<c:choose>
 					<c:when test="${not empty user }">
 						<!--如果 -->
-						<p class="class1" class="m-t-md" style="color: red;">你好！${user.first_name }</p>
+						<p class="class1" style="color: red;"><a href="<%=path%>/login/login_jsp.do">${user.first_name }</a></p>
 					</c:when>
 					<c:otherwise>
 						<!--否则 -->
-						<p class="class1">登录</p>
+						<p class="class1"> 请<a href="<%=path%>/login/login_jsp.do">登录</a></p>
 					</c:otherwise>
 				</c:choose>
-				<%-- <label class="class1">你好！</label> <a
-					href="<%=path%>/login/login_jsp.do"><c:if
-						test="${not empty user }">
-						<p class="m-t-md" style="color: red;">${user.first_name }</p>
-					</c:if></a> --%>
+				<%-- <label class="class1">你好！</label> --%>
 			</div>
 		</div>
 		<div class="row clearfix">
@@ -74,19 +70,10 @@
 								<c:forEach var="film" items="${fList}">
 									<c:set var="a" value="${a+1}" />
 									<tr id='tr+${a}'>
-										<td><input type="radio" name="Sex" id='rad+${a}'
-											checked="checked" value='${item.todo_item_id}' />${a}<input
-											disabled="disabled" style="background:; border: 0"
-											type="text" id="${film.film_id}_id" value='${film.film_id}' /></td>
-										<td><input type="text" disabled="disabled"
-											style="background:; border: 0" id="${film.film_id}_title"
-											value="${film.title}" /></td>
-										<td><input type="text" disabled="disabled"
-											style="background:; border: 0" id="${film.film_id}_desc"
-											value="${film.description}" /></td>
-										<td><input type="text" disabled="disabled"
-											style="background:; border: 0" id="${film.film_id}_lang"
-											value="${film.language_id}" /></td>
+										<td>${film.film_id}</td>
+										<td>${film.title}</td>
+										<td>${film.description}</td>
+										<td>${film.language_id}</td>
 										<td><a
 											href='<%=path%>/film/delete.do?film_id=${film.film_id}' id="">删除</a>
 											<a href='<%=path%>/film/update.do?film_id=${film.film_id}'>修改</a>
@@ -103,13 +90,13 @@
 							<div class="col-md-4 column"></div>
 							<div class="col-md-4 column">
 								<ul class="pagination">
-									<li><a href="#">Prev</a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">Next</a></li>
+									<li><a href="<%=path%>/film/changePage.do?nowPage=1"">Prev</a></li>
+									<li><a href="<%=path%>/film/changePage.do?nowPage=1">1</a></li>
+									<li><a href="<%=path%>/film/changePage.do?nowPage=2">2</a></li>
+									<li><a href="<%=path%>/film/changePage.do?nowPage=3">3</a></li>
+									<li><a href="<%=path%>/film/changePage.do?nowPage=4">4</a></li>
+									<li><a href="<%=path%>/film/changePage.do?nowPage=5">5</a></li>
+									<li><a href="<%=path%>/film/changePage.do?nowPage=12"">Next</a></li>
 								</ul>
 							</div>
 						</div>

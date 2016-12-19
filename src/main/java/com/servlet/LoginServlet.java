@@ -58,6 +58,7 @@ public class LoginServlet extends HttpServlet {
 		try {
 			if (customer != null) {
 				List<Film> fList = filmDao.queryByUsePage(1);
+				req.getSession().setAttribute("nowPage", 1);
 				req.getSession().setAttribute("fList", fList);
 				req.getSession().setAttribute("user", customer);
 				req.getRequestDispatcher("/index.jsp").forward(req, resp);

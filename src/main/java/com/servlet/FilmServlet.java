@@ -54,7 +54,10 @@ public class FilmServlet extends HttpServlet {
 			System.out.println(film_id1);
 			filmDao.remove(film_id1);
 			handlerDelete(req,resp,page);
-			System.out.println("delete.do");
+			break;
+		case "changePage.do":
+			int pages = Integer.parseInt(req.getParameter("nowPage").trim());
+			handlerChangePage(req,resp,pages);
 			break;
 
 		case "update.do":
@@ -88,6 +91,17 @@ public class FilmServlet extends HttpServlet {
 			break;
 		default:
 			break;
+		}
+	}
+
+	private void handlerChangePage(HttpServletRequest req, HttpServletResponse resp, int pages) {
+		List<Film> fList = filmDao.queryByUsePage(pages);
+		try {
+			req.getSession().setAttribute("fList", fList);
+			req.getRequestDispatcher("/index.jsp").forward(req, resp);
+		} catch (ServletException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
