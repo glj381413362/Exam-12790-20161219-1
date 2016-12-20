@@ -34,7 +34,6 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		op = getAction(req);
-		System.out.println("sss"+op);
 		switch (op) {
 		case "login_jsp.do":
 			handlerLogin_jsp(req, resp);
@@ -58,6 +57,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	private void handlerLogin(HttpServletRequest req, HttpServletResponse resp) {
 		String userName = req.getParameter("username").trim();
+		System.out.println("userName"+userName);
 		String pwd = req.getParameter("pwd").trim();
 		Customer customer = userDao.getCustomerByName(userName);
 		try {

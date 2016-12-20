@@ -80,8 +80,8 @@
 							<div class="col-md-4 column">
 								<ul class="pagination">
 									<li><a href="<%=path%>/film/changePage.do?nowPage=${(naowPage)-1}">Prev</a></li>
-									<li><a href="<%=path%>/film/changePage.do?nowPage=${(naowPage)+1}">${(naowPage)+1}</a></li>
-									<li><a href="<%=path%>/film/changePage.do?nowPage=${(naowPage)+2}">${(naowPage)+2}</a></li>
+									<li><a href="<%=path%>/film/changePage.do?nowPage=${(naowPage)+1}">${naowPage+11}</a></li>
+									<li><a href="<%=path%>/film/changePage.do?nowPage=${(naowPage)+2}">${naowPage+23}</a></li>
 									<li><a href="<%=path%>/film/changePage.do?nowPage=${(naowPage)+3}">${(naowPage)+3}</a></li>
 									<li><a href="<%=path%>/film/changePage.do?nowPage=${(naowPage)+4}">${(naowPage)+4}</a></li>
 									<li><a href="<%=path%>/film/changePage.do?nowPage=${(naowPage)+5}">${(naowPage)+5}</a></li>

@@ -47,7 +47,6 @@ public class UserFilter implements Filter {
 		} else {// 不在过滤url之外，判断session是否存在
 			HttpSession session = ((HttpServletRequest) req).getSession();
 			if (session == null || session.getAttribute("user") == null) {
-				System.out.println("判断session是否存");
 				req.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(req, resp);
 			} else {
 				chain.doFilter(req, resp);
